@@ -6,6 +6,8 @@ If you click on the parts of the eye a random color will be generated and assign
 
 Visit the [life demo](https://codepen.io/sirpixiejerry/pen/eYVXRLW) to try it yourself.
 
+![This is an image](https://i.ibb.co/t8XQWXF/Bildschirmfoto-2022-06-16-um-16-15-14.png)
+
 NEXT THINGS TO IMPLEMENT:
 
 -   use hsl instead of rgb
