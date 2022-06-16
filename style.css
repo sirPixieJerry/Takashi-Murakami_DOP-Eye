@@ -1,0 +1,145 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    cursor: crosshair;
+}
+
+#eyeBall {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    flex-shrink: 0;
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: rgb(53, 45, 106);
+}
+
+svg {
+    pointer-events: none;
+    transform: translate(-150px, -79px);
+}
+
+path {
+    fill: rgb(255, 125, 255);
+    pointer-events: visibleFill;
+}
+
+#lashes {
+    position: absolute;
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    background-color: rgb(255, 125, 255);
+}
+
+#lenseOne {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    transform: translate(-100px, -96px);
+    border-radius: 50%;
+    background-color: deeppink;
+}
+
+#lenseTwo {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    transform: translate(-90px, -77px);
+    border-radius: 50%;
+    background-color: rgb(12, 12, 70);
+}
+
+#lenseThree {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    transform: translate(-55px, -55px);
+    border-radius: 50%;
+    background-color: rgb(193, 222, 48);
+}
+
+#irisOne {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    transform: translate(-45px, -38px);
+    border-radius: 50%;
+    background-color: rgb(32, 0, 140);
+}
+
+#irisTwo {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    transform: translate(-12px, -12px);
+    border-radius: 50%;
+    background-color: red;
+}
+
+#irisThree {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    transform: translate(-9px, -9px);
+    border-radius: 50%;
+    background-color: greenyellow;
+}
+
+#irisFour {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    transform: translate(-7px, -7px);
+    border-radius: 50%;
+    background-color: pink;
+}
+
+#irisFive {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    transform: translate(-5px, -6px);
+    border-radius: 50%;
+    background-color: skyblue;
+}
+
+#irisSix {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    transform: translate(-2px, -2px);
+    border-radius: 50%;
+    background-color: darkblue;
+}
+
+#reflection {
+    position: absolute;
+}
+
+#reflexTwo {
+    position: absolute;
+    width: 46px;
+    height: 46px;
+    transform: translate(-45px, -45px);
+    border-radius: 50%;
+    background-color: yellow;
+}
+
+#reflexOne {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    transform: translate(8px, 8px);
+    border-radius: 50%;
+    background-color: yellow;
+}
