@@ -23,6 +23,7 @@ Visit the [life demo](https://codepen.io/sirpixiejerry/pen/eYVXRLW) to try it yo
 -   [x] main feature to click the eyes eements and change it's color
 -   [x] array that keeps track of the users steps
 -   [x] rewind after five seconds to the origin colors
+-   [ ] write a second version of the eye in post-ES6 syntax
 -   [ ] add a pop-up that explains the functionality
 -   [ ] possibility to scroll through the steps taken
 -   [ ] possibility to download the result
