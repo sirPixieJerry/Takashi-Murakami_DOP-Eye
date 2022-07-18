@@ -1,57 +1,46 @@
 (function () {
-    // setup the arrays for the rewind
+    const lashOne = document.getElementById("lashes");
+    const lashTwo = document.querySelector("path");
+    const reflexOne = document.getElementById("reflexOne");
+    const reflexTwo = document.getElementById("reflexTwo");
+
     var arrItm = [];
     var arrCol = [];
-    // variable for idle time
+
     var time;
-    // variable for the rewind stop
     var back;
 
-    // add an event-listener onclick
+    const colorSpace = "rgb";
+
     document.addEventListener("click", function (event) {
-        // setup the variables for the composed objects
-        // the composed lashes object:
-        var lashOne = document.getElementById("lashes");
-        var lashTwo = document.querySelector("path");
-        // the composed reflection object:
-        var reflexOne = document.getElementById("reflexOne");
-        var reflexTwo = document.getElementById("reflexTwo");
-        // generate the random rgb color:
-        var r = (Math.random() * 256) | 0;
-        var g = (Math.random() * 256) | 0;
-        var b = (Math.random() * 256) | 0;
-        // access all objects via the "matches" method (easy!)
         if (!event.target.matches(".lense")) return;
-        // access the lashes
+
         if (event.target.id === "lashes" || event.target.id === "lash") {
-            // push the recent color and object id into the array
+            let clr2 = bgClr();
+
             arrItm.push(lashOne.id);
             arrCol.push(lashOne.style.backgroundColor);
-            // change the actual color
-            lashOne.style.backgroundColor =
-                "rgb" + "(" + r + ", " + g + ", " + b + ")";
-            lashTwo.style.fill = "rgb" + "(" + r + ", " + g + ", " + b + ")";
-            // access the reflection
-        } else if (
+
+            lashOne.style.backgroundColor = clr2;
+            lashTwo.style.fill = clr2;
+        }
+        if (
             event.target.id === "reflexOne" ||
             event.target.id === "reflexTwo"
         ) {
-            // push the recent color and object id into the array
+            let clr = bgClr();
+
             arrItm.push(reflexOne.id);
             arrCol.push(reflexOne.style.backgroundColor);
-            // change the actual color
-            reflexOne.style.backgroundColor =
-                "rgb" + "(" + r + ", " + g + ", " + b + ")";
-            reflexTwo.style.backgroundColor =
-                "rgb" + "(" + r + ", " + g + ", " + b + ")";
-            // access all other objects
+
+            reflexOne.style.backgroundColor = clr;
+            reflexTwo.style.backgroundColor = clr;
         } else {
             // push the recent color and object id into the array
             arrItm.push(event.target.id);
             arrCol.push(event.target.style.backgroundColor);
             // change the actual color
-            event.target.style.backgroundColor =
-                "rgb" + "(" + r + ", " + g + ", " + b + ")";
+            event.target.style.backgroundColor = bgClr();
         }
         // resets the idle time of the rewind
         document.onmousedown = resetTimer;
@@ -97,4 +86,33 @@
             }
         }
     });
+
+    function bgClr() {
+        const clr = Array(3)
+            .fill()
+            .map((i) => (i = (Math.random() * 255) | 0));
+
+        return `${colorSpace}(${clr[0]}, ${clr[1]}, ${clr[2]})`;
+    }
 })();
+
+// hsl farbraum
+// variable festlegen die den setTimeout chanceled
+// arr muss erst zum schluss gelöscht werden
+// zusätzliche veariable um durch den arr zu zählen
+// x und y position bestimmen den punkt in dem man in dem arr vor und zurück spult
+
+/*        ,,_
+       zd$$??=
+     z$$P? F:`c,                _
+    d$$, `c'cc$$i           ,cd$?R
+   $$$$ cud$,?$$$i       ,=P"2?z "
+    $" " ?$$$,?$$$.    ,-''`>, bzP
+     'cLdb,?$$,?$$$   ,h' "I$'J$P
+  ... `?$$$,"$$,`$$h  $$PxrF'd$"
+d$PP""?-,"?$$,?$h`$$,,$$'$F44"
+?,,_`=4c,?=,"?hu?$`?L4$'? '
+   `""?==""=-"" `""-`'_,,,,
+           .ccu?m?e?JC,-,"=?
+                     """=='?"
+© ❥₷ίℜ✿ℙ℩ⓧίℇ❀ⅉεℛƦɏ */
