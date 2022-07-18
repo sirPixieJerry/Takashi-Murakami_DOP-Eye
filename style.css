@@ -33,7 +33,7 @@ path {
     pointer-events: visibleFill;
 }
 
-#lashes {
+#box {
     position: absolute;
     width: 210px;
     height: 210px;
@@ -126,7 +126,7 @@ path {
     position: absolute;
 }
 
-#reflexTwo {
+#linkTwo {
     position: absolute;
     width: 46px;
     height: 46px;
@@ -135,7 +135,7 @@ path {
     background-color: yellow;
 }
 
-#reflexOne {
+#linkOne {
     position: absolute;
     width: 32px;
     height: 32px;
