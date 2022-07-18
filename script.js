@@ -98,24 +98,3 @@
         }
     });
 })();
-
-// hsl farbraum
-// variable festlegen die den setTimeout chanceled
-// arr muss erst zum schluss gelöscht werden
-// zusätzliche veariable um durch den arr zu zählen
-// x und y position bestimmen den punkt in dem man in dem arr vor und zurück spult
-
-/*        ,,_
-       zd$$??=
-     z$$P? F:`c,                _
-    d$$, `c'cc$$i           ,cd$?R
-   $$$$ cud$,?$$$i       ,=P"2?z "
-    $" " ?$$$,?$$$.    ,-''`>, bzP
-     'cLdb,?$$,?$$$   ,h' "I$'J$P
-  ... `?$$$,"$$,`$$h  $$PxrF'd$"
-d$PP""?-,"?$$,?$h`$$,,$$'$F44"
-?,,_`=4c,?=,"?hu?$`?L4$'? '
-   `""?==""=-"" `""-`'_,,,,
-           .ccu?m?e?JC,-,"=?
-                     """=='?"
-© ❥₷ίℜ✿ℙ℩ⓧίℇ❀ⅉεℛƦɏ */
