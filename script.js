@@ -19,13 +19,13 @@
     function resetTimer() {
         clearTimeout(idle);
         clearTimeout(interval);
-        idle = setTimeout(runBckWrds, IDLE);
+        idle = setTimeout(rewind, IDLE);
     }
 
     // TIC CONTROLS ⚙️
     function tic() {
         steps.pop();
-        interval = setTimeout(runBckWrds, TIC);
+        interval = setTimeout(rewind, TIC);
     }
 
     // COLOR SETUP --------------------------------------------------------
@@ -40,46 +40,42 @@
         return `rgb(${clr[0]}, ${clr[1]}, ${clr[2]})`;
     }
 
-    // ____________________________________________________________________
-    // EVENT LISTENER SETUP -----------------------------------------------
+    // SCROLL-STEPS SETUP -------------------------------------------------
 
-    document.addEventListener("click", function (evt) {
-        let clr = bgClr();
-        // handle clickable elements
-        if (!evt.target.matches(".lense")) return;
-        if (evt.target.id === "box" || evt.target.id === "path") {
-            // svg
-            steps.push({
-                item: box.id,
-                color: box.style.backgroundColor,
-            });
+    let x;
+
+    document.onmousedown = (evt) => {
+        x = evt.clientX;
+        document.addEventListener("mousemove", clientX, true);
+    };
+
+    document.onmouseup = () => {
+        document.removeEventListener("mousemove", clientX, true);
+    };
+
+    function clientX(evt) {
+        const l = steps.length;
+        const c = ((evt.clientX - x) / 10).toFixed(0);
+        if (l - c < 0 || l - c > l - 1) return;
+        let id = steps[l - c].item;
+        let clr = steps[l - c].color;
+        let elm = document.getElementById(id);
+        if (elm.id === box.id) {
             box.style.backgroundColor = clr;
             path.style.fill = clr;
-            resetTimer();
-        } else if (evt.target.id === "linkOne" || evt.target.id === "linkTwo") {
-            // linked
-            steps.push({
-                item: lOne.id,
-                color: lOne.style.backgroundColor,
-            });
+        } else if (elm.id === lOne.id) {
             lOne.style.backgroundColor = clr;
             lTwo.style.backgroundColor = clr;
-            resetTimer();
         } else {
-            // everything else
-            steps.push({
-                item: evt.target.id,
-                color: evt.target.style.backgroundColor,
-            });
-            evt.target.style.backgroundColor = bgClr();
-            resetTimer();
+            elm.style.backgroundColor = clr;
         }
-    });
+        console.log("mouseX: ", steps[l - c], l - c);
+    }
 
     // ____________________________________________________________________
     // REWIND CLOCK -------------------------------------------------------
 
-    function runBckWrds() {
+    function rewind() {
         if (!(steps.length === 0)) {
             let id = steps[steps.length - 1].item;
             let clr = steps[steps.length - 1].color;
@@ -98,6 +94,40 @@
             }
         }
     }
+
+    // ____________________________________________________________________
+    // EVENT LISTENER SETUP -----------------------------------------------
+
+    document.addEventListener("click", (evt) => {
+        let clr = bgClr();
+        // resetTimer();
+        // handle clickable elements
+        if (!evt.target.matches(".lense")) return;
+        if (evt.target.id === "box" || evt.target.id === "path") {
+            // svg
+            steps.push({
+                item: box.id,
+                color: box.style.backgroundColor,
+            });
+            box.style.backgroundColor = clr;
+            path.style.fill = clr;
+        } else if (evt.target.id === "linkOne" || evt.target.id === "linkTwo") {
+            // linked
+            steps.push({
+                item: lOne.id,
+                color: lOne.style.backgroundColor,
+            });
+            lOne.style.backgroundColor = clr;
+            lTwo.style.backgroundColor = clr;
+        } else {
+            // everything else
+            steps.push({
+                item: evt.target.id,
+                color: evt.target.style.backgroundColor,
+            });
+            evt.target.style.backgroundColor = clr;
+        }
+    });
 })();
 
 /*        ,,_
