@@ -22,7 +22,7 @@ Visit the [life demo](https://codepen.io/sirpixiejerry/pen/eYVXRLW) to try it yo
 -   [x] change element color
 -   [x] rewind to original color
 -   [x] refactor code
+-   [x] scroll steps
 -   [ ] implement different color spaces
 -   [ ] add ui/ux
--   [ ] scroll through the steps taken by the user
 -   [ ] download the result

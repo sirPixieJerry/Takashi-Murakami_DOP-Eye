@@ -7,32 +7,14 @@
     const lOne = document.getElementById("linkOne");
     const lTwo = document.getElementById("linkTwo");
 
-    // REWIND SETUP --------------------------------------------------------
-
-    const TIC = 50;
-    const IDLE = 5000;
     const steps = [];
-    let idle = 0;
-    let interval = 0;
-
-    // TIMER CONTROLS ⚙️
-    function resetTimer() {
-        clearTimeout(idle);
-        clearTimeout(interval);
-        idle = setTimeout(rewind, IDLE);
-    }
-
-    // TIC CONTROLS ⚙️
-    function tic() {
-        steps.pop();
-        interval = setTimeout(rewind, TIC);
-    }
 
     // COLOR SETUP --------------------------------------------------------
 
+    // CONTROLS ⚙️
     const FACTOR = 255;
 
-    // RGB CONTROLS ⚙️
+    // RGB
     function bgClr() {
         const clr = Array(3)
             .fill()
@@ -40,67 +22,98 @@
         return `rgb(${clr[0]}, ${clr[1]}, ${clr[2]})`;
     }
 
+    // COLOR BY ARRAY
+    function colorByArray(idx) {
+        let id = steps[idx].item;
+        let clr = steps[idx].color;
+        let elm = document.getElementById(id);
+        if (elm.id === box.id) {
+            handleSVG(clr);
+            tic();
+        } else if (elm.id === lOne.id) {
+            handleClones(clr);
+            tic();
+        } else {
+            elm.style.backgroundColor = clr;
+            tic();
+        }
+    }
+
+    // HANDLE CLONES
+    function handleClones(clr) {
+        lOne.style.backgroundColor = clr;
+        lTwo.style.backgroundColor = clr;
+    }
+
+    // HANDLE SVG
+    function handleSVG(clr) {
+        box.style.backgroundColor = clr;
+        path.style.fill = clr;
+    }
+
+    // REWIND CLOCK SETUP -------------------------------------------------
+
+    let switchClock = false;
+    let idleTime = 0;
+    let interval = 0;
+
+    // CONTROLS ⚙️
+    const TIC = 50;
+    const IDLE = 5000;
+
+    // TIMER
+    function resetTimer() {
+        if (!switchClock) return;
+        clearTimeout(idleTime);
+        clearTimeout(interval);
+        idleTime = setTimeout(rewind, IDLE);
+    }
+
+    // TIC
+    function tic() {
+        if (!switchClock) return;
+        steps.pop();
+        interval = setTimeout(rewind, TIC);
+    }
+
+    // CLOCK
+    function rewind() {
+        const idxRewind = steps.length - 1;
+        if (steps.length === 0) return;
+        colorByArray(idxRewind);
+    }
+
     // SCROLL-STEPS SETUP -------------------------------------------------
 
     let x;
 
+    // HANDLE MOUSEDOWN
     document.onmousedown = (evt) => {
         x = evt.clientX;
-        document.addEventListener("mousemove", clientX, true);
+        switchClock = false;
+        document.addEventListener("mousemove", scroll, true);
     };
 
+    // HANDLE MOUSEUP
     document.onmouseup = () => {
-        document.removeEventListener("mousemove", clientX, true);
+        switchClock = true;
+        document.removeEventListener("mousemove", scroll, true);
     };
 
-    function clientX(evt) {
+    // SCROLL CONTROLS
+    function scroll(evt) {
+        evt.preventDefault();
         const l = steps.length;
-        const c = ((evt.clientX - x) / 10).toFixed(0);
-        if (l - c < 0 || l - c > l - 1) return;
-        let id = steps[l - c].item;
-        let clr = steps[l - c].color;
-        let elm = document.getElementById(id);
-        if (elm.id === box.id) {
-            box.style.backgroundColor = clr;
-            path.style.fill = clr;
-        } else if (elm.id === lOne.id) {
-            lOne.style.backgroundColor = clr;
-            lTwo.style.backgroundColor = clr;
-        } else {
-            elm.style.backgroundColor = clr;
-        }
-        console.log("mouseX: ", steps[l - c], l - c);
+        const idxScroll = l - ((evt.clientX - x) / 10).toFixed(0);
+        if (idxScroll < 0 || idxScroll >= l - 1) return;
+        colorByArray(idxScroll);
     }
 
-    // ____________________________________________________________________
-    // REWIND CLOCK -------------------------------------------------------
-
-    function rewind() {
-        if (!(steps.length === 0)) {
-            let id = steps[steps.length - 1].item;
-            let clr = steps[steps.length - 1].color;
-            let elm = document.getElementById(id);
-            if (elm.id === box.id) {
-                box.style.backgroundColor = clr;
-                path.style.fill = clr;
-                tic();
-            } else if (elm.id === lOne.id) {
-                lOne.style.backgroundColor = clr;
-                lTwo.style.backgroundColor = clr;
-                tic();
-            } else {
-                elm.style.backgroundColor = clr;
-                tic();
-            }
-        }
-    }
-
-    // ____________________________________________________________________
-    // EVENT LISTENER SETUP -----------------------------------------------
+    // CLICK EVENT LISTENER SETUP -----------------------------------------
 
     document.addEventListener("click", (evt) => {
         let clr = bgClr();
-        // resetTimer();
+        resetTimer();
         // handle clickable elements
         if (!evt.target.matches(".lense")) return;
         if (evt.target.id === "box" || evt.target.id === "path") {
@@ -109,16 +122,14 @@
                 item: box.id,
                 color: box.style.backgroundColor,
             });
-            box.style.backgroundColor = clr;
-            path.style.fill = clr;
+            handleSVG(clr);
         } else if (evt.target.id === "linkOne" || evt.target.id === "linkTwo") {
-            // linked
+            // clones
             steps.push({
                 item: lOne.id,
                 color: lOne.style.backgroundColor,
             });
-            lOne.style.backgroundColor = clr;
-            lTwo.style.backgroundColor = clr;
+            handleClones(clr);
         } else {
             // everything else
             steps.push({
