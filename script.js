@@ -81,9 +81,9 @@
 
     function runBckWrds() {
         if (!(steps.length === 0)) {
-            let elm = document.getElementById(id);
             let id = steps[steps.length - 1].item;
             let clr = steps[steps.length - 1].color;
+            let elm = document.getElementById(id);
             if (elm.id === box.id) {
                 box.style.backgroundColor = clr;
                 path.style.fill = clr;
