@@ -13,13 +13,14 @@
 
     // CONTROLS ⚙️
     const FACTOR = 255;
+    const COLOR_SPACE = "rgb";
 
     // RGB
     function bgClr() {
         const clr = Array(3)
             .fill()
             .map((i) => (i = (Math.random() * FACTOR) | 0));
-        return `rgb(${clr[0]}, ${clr[1]}, ${clr[2]})`;
+        return `${COLOR_SPACE}(${clr[0]}, ${clr[1]}, ${clr[2]})`;
     }
 
     // COLOR BY ARRAY
