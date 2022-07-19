@@ -23,6 +23,7 @@ Visit the [life demo](https://codepen.io/sirpixiejerry/pen/eYVXRLW) to try it yo
 -   [x] rewind to original color
 -   [x] refactor code
 -   [x] scroll steps
--   [ ] implement different color spaces
--   [ ] add ui/ux
 -   [ ] download the result
+-   [ ] hsl color spaces
+-   [ ] mobile devices
+-   [ ] add ui/ux
