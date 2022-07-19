@@ -1,110 +1,104 @@
 (function () {
-    // access elements with DOM
+    // ____________________________________________________________________
+    // INITIALISE DOM -----------------------------------------------------
+
     const box = document.getElementById("box");
     const path = document.querySelector("path");
     const lOne = document.getElementById("linkOne");
     const lTwo = document.getElementById("linkTwo");
 
-    // setup clock
-    const steps = [];
-    let time;
-    let back;
+    // REWIND SETUP --------------------------------------------------------
 
-    // generate rgb sring
+    const INTERVALL = 50;
+    const IDLE = 5000;
+    const steps = [];
+    let idle = 0;
+    let interval = 0;
+
+    // TIMER CONTROLS ⚙️
+    function resetTimer() {
+        clearTimeout(idle);
+        clearTimeout(interval);
+        idle = setTimeout(runBckWrds, IDLE);
+    }
+
+    // TIC CONTROLS ⚙️
+    function tic() {
+        steps.pop();
+        interval = setTimeout(runBckWrds, INTERVALL);
+    }
+
+    // COLOR SETUP --------------------------------------------------------
+
+    const FACTOR = 255;
+
+    // RGB CONTROLS ⚙️
     function bgClr() {
         const clr = Array(3)
             .fill()
-            .map((i) => (i = (Math.random() * 255) | 0));
+            .map((i) => (i = (Math.random() * FACTOR) | 0));
         return `rgb(${clr[0]}, ${clr[1]}, ${clr[2]})`;
     }
 
-    function resetTimer() {
-        clearTimeout(time);
-        clearTimeout(back);
-        time = setTimeout(bckWrds, 5000);
-    }
+    // ____________________________________________________________________
+    // EVENT LISTENER SETUP -----------------------------------------------
 
-    // event-listener setup
     document.addEventListener("click", function (evt) {
-        // store current rgb string
-        const clr = bgClr();
+        let clr = bgClr();
         // handle clickable elements
         if (!evt.target.matches(".lense")) return;
-        resetTimer();
-        console.log(time);
         if (evt.target.id === "box" || evt.target.id === "path") {
+            // svg
             steps.push({
                 item: box.id,
                 color: box.style.backgroundColor,
             });
             box.style.backgroundColor = clr;
             path.style.fill = clr;
+            resetTimer();
         } else if (evt.target.id === "linkOne" || evt.target.id === "linkTwo") {
+            // linked
             steps.push({
                 item: lOne.id,
                 color: lOne.style.backgroundColor,
             });
             lOne.style.backgroundColor = clr;
             lTwo.style.backgroundColor = clr;
+            resetTimer();
         } else {
+            // everything else
             steps.push({
                 item: evt.target.id,
                 color: evt.target.style.backgroundColor,
             });
             evt.target.style.backgroundColor = bgClr();
+            resetTimer();
         }
-
-        // resets the idle time of the rewind
-        // document.onmousedown = resetTimer;
-        // // the actual resetter of the idle time and rewind starter
-
-        // introducing the rewind
-        // function bckWrds() {
-        //     // stops the rewind if arrays are empty
-        //     if (arrItm.length >= 1) {
-        //         // calls objects by the id stored in the arrays
-        //         var elm = document.getElementById(arrItm[arrItm.length - 1]);
-        //         // rewind for the lashes
-        //         if (elm.id === lashOne.id) {
-        //             lashOne.style.backgroundColor = arrCol[arrCol.length - 1];
-        //             lashTwo.style.fill = arrCol[arrCol.length - 1];
-        //             // remove indexes in the arrays
-        //             arrItm.pop();
-        //             arrCol.pop();
-        //             // calls function again
-        //             back = setTimeout(bckWrds, 50);
-        //             // rewind for the reflections
-        //         } else if (elm.id === reflexOne.id) {
-        //             reflexOne.style.backgroundColor = arrCol[arrCol.length - 1];
-        //             reflexTwo.style.backgroundColor = arrCol[arrCol.length - 1];
-        //             // remove indexes in the arrays
-        //             arrItm.pop();
-        //             arrCol.pop();
-        //             // calls function again
-        //             back = setTimeout(bckWrds, 50);
-        //             // rewind for the lenses
-        //         } else {
-        //             elm.style.backgroundColor = arrCol[arrCol.length - 1];
-        //             // remove indexes in the arrays
-        //             arrItm.pop();
-        //             arrCol.pop();
-        //             // calls function again
-        //             back = setTimeout(bckWrds, 50);
-        //         }
-        //     }
-        // }
     });
 
-    function bckWrds() {
-        console.log("bckWrds");
+    // ____________________________________________________________________
+    // REWIND CLOCK -------------------------------------------------------
+
+    function runBckWrds() {
+        if (!(steps.length === 0)) {
+            let elm = document.getElementById(id);
+            let id = steps[steps.length - 1].item;
+            let clr = steps[steps.length - 1].color;
+            if (elm.id === box.id) {
+                box.style.backgroundColor = clr;
+                path.style.fill = clr;
+                tic();
+            } else if (elm.id === lOne.id) {
+                lOne.style.backgroundColor = clr;
+                lTwo.style.backgroundColor = clr;
+                tic();
+            } else {
+                elm.style.backgroundColor = clr;
+                tic();
+            }
+        }
     }
 })();
-
-// hsl farbraum
-// variable festlegen die den setTimeout chanceled
-// arr muss erst zum schluss gelöscht werden
-// zusätzliche veariable um durch den arr zu zählen
-// x und y position bestimmen den punkt in dem man in dem arr vor und zurück spult
 
 /*        ,,_
        zd$$??=
