@@ -24,6 +24,5 @@ Visit the [life demo](https://codepen.io/sirpixiejerry/pen/eYVXRLW) to try it yo
 -   [x] refactor code
 -   [x] scroll steps
 -   [ ] download the result
--   [ ] hsl color spaces
 -   [ ] mobile devices
 -   [ ] add ui/ux
