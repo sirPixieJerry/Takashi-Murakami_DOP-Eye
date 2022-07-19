@@ -23,6 +23,6 @@ Visit the [life demo](https://codepen.io/sirpixiejerry/pen/eYVXRLW) to try it yo
 -   [x] rewind to original color
 -   [x] refactor code
 -   [x] scroll steps
+-   [ ] add user interface
 -   [ ] download the result
 -   [ ] mobile devices
--   [ ] add ui/ux
