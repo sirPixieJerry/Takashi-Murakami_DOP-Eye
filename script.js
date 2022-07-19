@@ -9,7 +9,7 @@
 
     // REWIND SETUP --------------------------------------------------------
 
-    const INTERVALL = 50;
+    const TIC = 50;
     const IDLE = 5000;
     const steps = [];
     let idle = 0;
@@ -25,7 +25,7 @@
     // TIC CONTROLS ⚙️
     function tic() {
         steps.pop();
-        interval = setTimeout(runBckWrds, INTERVALL);
+        interval = setTimeout(runBckWrds, TIC);
     }
 
     // COLOR SETUP --------------------------------------------------------
