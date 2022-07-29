@@ -150,3 +150,17 @@ path {
     border-radius: 50%;
     background-color: yellow;
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+#info {
+    transform: translate(-100px, -100px);
+}
+
+#info-container {
+    display: flex;
+    align-items: center;
+}

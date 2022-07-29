@@ -8,86 +8,85 @@
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <div>
-            <svg
-                version="1.1"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 245.334 245.334"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                enable-background="new 0 0 245.334 245.334"
-            >
-                <g>
-                    <path
-                        d="M122.667,0C55.028,0,0,55.028,0,122.667s55.027,122.667,122.666,122.667s122.667-55.028,122.667-122.667   S190.305,0,122.667,0z M122.667,215.334C71.57,215.334,30,173.764,30,122.667S71.57,30,122.667,30s92.667,41.57,92.667,92.667   S173.763,215.334,122.667,215.334z"
-                    />
-                    <rect width="30" x="107.667" y="109.167" height="79" />
-                    <rect width="30" x="107.667" y="57.167" height="29" />
-                </g>
-            </svg>
-        </div>
-        <div id="capture">
-            <div
-                id="eyeBall"
-                class="lense"
-                style="background-color: rgb(53, 45, 106)"
-            >
-                <div
-                    id="box"
-                    class="lense"
-                    style="background-color: rgb(255, 125, 255)"
+        <div class="container">
+            <div class="info-container">
+                <svg
+                    id="info"
+                    width="24px"
+                    height="24px"
+                    viewBox="0 0 24 24"
+                    fill="none"
                 >
-                    <svg viewBox="0 0 3 3" border="solid">
-                        <path
-                            id="path"
-                            class="lense"
-                            d="m 2.359 1.992 c -0.354 -0.155 -0.778 -0.532 -0.85 -0.6465 c 0.2415 0.1845 0.496 0.322 0.941 0.4025 c -0.2755 -0.1735 -0.691 -0.695 -0.733 -0.8775 c 0.3115 0.3455 0.481 0.492 0.873 0.6825 c -0.254 -0.2925 -0.4575 -0.8435 -0.494 -1.066 c 0.1785 0.369 0.282 0.5595 0.704 0.9115 z"
-                        ></path>
-                    </svg>
-                </div>
-                <div>
+                    <path
+                        d="M3 3h2v18H3V3zm16 0H5v2h14v14H5v2h16V3h-2zm-8 6h2V7h-2v2zm2 8h-2v-6h2v6z"
+                        fill="currentColor"
+                    />
+                </svg>
+            </div>
+
+            <div id="capture">
+                <div
+                    id="eyeBall"
+                    class="lense"
+                    style="background-color: rgb(53, 45, 106)"
+                >
                     <div
-                        id="lenseOne"
+                        id="box"
                         class="lense"
-                        style="background-color: deeppink"
-                    ></div>
-                    <div
-                        id="lenseTwo"
-                        class="lense"
-                        style="background-color: rgb(12, 12, 70)"
-                    ></div>
-                    <div
-                        id="lenseThree"
-                        class="lense"
-                        style="background-color: rgb(193, 222, 48)"
-                    ></div>
-                    <div id="iris">
-                        <div
-                            id="irisOne"
-                            class="lense"
-                            style="background-color: rgb(32, 0, 140)"
-                        ></div>
-                        <div id="irisTwo"></div>
-                        <div id="irisThree"></div>
-                        <div id="irisFour"></div>
-                        <div id="irisFive"></div>
-                        <div id="irisSix"></div>
+                        style="background-color: rgb(255, 125, 255)"
+                    >
+                        <svg viewBox="0 0 3 3" border="solid">
+                            <path
+                                id="path"
+                                class="lense"
+                                d="m 2.359 1.992 c -0.354 -0.155 -0.778 -0.532 -0.85 -0.6465 c 0.2415 0.1845 0.496 0.322 0.941 0.4025 c -0.2755 -0.1735 -0.691 -0.695 -0.733 -0.8775 c 0.3115 0.3455 0.481 0.492 0.873 0.6825 c -0.254 -0.2925 -0.4575 -0.8435 -0.494 -1.066 c 0.1785 0.369 0.282 0.5595 0.704 0.9115 z"
+                            ></path>
+                        </svg>
                     </div>
-                    <div id="reflection">
+                    <div>
                         <div
-                            id="linkOne"
+                            id="lenseOne"
                             class="lense"
-                            style="background-color: yellow"
+                            style="background-color: deeppink"
                         ></div>
                         <div
-                            id="linkTwo"
+                            id="lenseTwo"
                             class="lense"
-                            style="background-color: yellow"
+                            style="background-color: rgb(12, 12, 70)"
                         ></div>
+                        <div
+                            id="lenseThree"
+                            class="lense"
+                            style="background-color: rgb(193, 222, 48)"
+                        ></div>
+                        <div id="iris">
+                            <div
+                                id="irisOne"
+                                class="lense"
+                                style="background-color: rgb(32, 0, 140)"
+                            ></div>
+                            <div id="irisTwo"></div>
+                            <div id="irisThree"></div>
+                            <div id="irisFour"></div>
+                            <div id="irisFive"></div>
+                            <div id="irisSix"></div>
+                        </div>
+                        <div id="reflection">
+                            <div
+                                id="linkOne"
+                                class="lense"
+                                style="background-color: yellow"
+                            ></div>
+                            <div
+                                id="linkTwo"
+                                class="lense"
+                                style="background-color: yellow"
+                            ></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <script src="script.js"></script>
     </body>
 </html>
